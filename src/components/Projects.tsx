@@ -4,6 +4,27 @@ import ProjectCard from "./ProjectCard";
 
 const projects = [
   {
+    title: "Floratrix",
+    description:
+      "An AI-powered plant care system that collects sensor data, predicts watering needs, and analyzes plant health through images.",
+    imageUrl: "/floratrix.gif",
+    isFeatured: true,
+    liveUrl: "https://floratrix.vercel.app",
+    technologies: [
+      "ESP32",
+      "FastAPI",
+      "Supabase",
+      "Gemini API",
+      "Next.js",
+      "Tailwind CSS",
+    ],
+    gradientColors: {
+      firstColor: "255, 65, 108",
+      secondColor: "255, 75, 43",
+      thirdColor: "255, 169, 61",
+    },
+  },
+  {
     title: "Exam Genius",
     description:
       "A Python app serving 3000+ Halic University students to access exam dates and classroom info.",
@@ -11,6 +32,20 @@ const projects = [
     githubUrl: "https://github.com/eftekin/halic-exam-genius",
     liveUrl: "https://halicexamgenius.streamlit.app",
     technologies: ["Python", "Streamlit", "Pandas", "Matplotlib"],
+    gradientColors: {
+      firstColor: "255, 65, 108",
+      secondColor: "255, 75, 43",
+      thirdColor: "255, 169, 61",
+    },
+  },
+  {
+    title: "Ricklepedia",
+    description:
+      "A web app to explore Rick and Morty characters, episodes, and locations.",
+    imageUrl: "/ricklepedia.gif",
+    githubUrl: "https://github.com/eftekin/ricklepedia",
+    liveUrl: "https://ricklepedia.com",
+    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Rick and Morty API"],
     gradientColors: {
       firstColor: "255, 65, 108",
       secondColor: "255, 75, 43",
