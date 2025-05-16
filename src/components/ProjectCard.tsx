@@ -62,6 +62,8 @@ function ProjectCard({
               alt={title}
               fill
               loading="lazy"
+              quality={60}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               className="object-cover rounded-t-lg transition-transform duration-300"
             />
           ) : (
