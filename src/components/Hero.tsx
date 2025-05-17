@@ -4,6 +4,7 @@ import Image from "next/image";
 import { FaGithub, FaLinkedin, FaXTwitter } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import { ScrollArrow } from "./ui/scroll-arrow";
+import { motion } from "framer-motion";
 
 function Hero() {
   const handleScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
@@ -28,7 +29,12 @@ function Hero() {
       id="about"
       className="flex flex-col items-center justify-center min-h-[85vh] text-center gap-8 px-4 py-12 mt-4 md:mt-0 relative"
     >
-      <div className="relative w-36 h-36 md:w-44 md:h-44 overflow-hidden rounded-full border-4 border-neutral-700/50 shadow-xl hover:border-neutral-600/50 transition-colors duration-300">
+      <motion.div
+        initial={{ opacity: 0, scale: 0.5 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.5 }}
+        className="relative w-36 h-36 md:w-44 md:h-44 overflow-hidden rounded-full border-4 border-neutral-700/50 shadow-xl hover:border-neutral-600/50 transition-colors duration-300"
+      >
         <Image
           src="/profile.jpeg"
           fill
@@ -37,9 +43,14 @@ function Hero() {
           priority={true}
           quality={90}
         />
-      </div>
+      </motion.div>
 
-      <div className="space-y-5 max-w-2xl">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.2 }}
+        className="space-y-5 max-w-2xl"
+      >
         <h1 className="text-4xl md:text-6xl font-bold text-white">Mustafa Eftekin</h1>
         <p className="text-lg md:text-xl text-neutral-300">
           Building intelligent solutions with AI and code.
@@ -47,9 +58,14 @@ function Hero() {
             Full Stack Developer & AI Enthusiast
           </span>
         </p>
-      </div>
+      </motion.div>
 
-      <div className="flex gap-8">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.4 }}
+        className="flex gap-8"
+      >
         {socialLinks.map((link, i) => {
           const Icon = link.icon;
           return (
@@ -64,9 +80,14 @@ function Hero() {
             </a>
           );
         })}
-      </div>
+      </motion.div>
 
-      <div className="relative bg-gradient-to-r from-purple-500 via-blue-500 to-pink-500 p-[1px] rounded-full cursor-pointer group">
+      <motion.div
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.5, delay: 0.6 }}
+        className="relative bg-gradient-to-r from-purple-500 via-blue-500 to-pink-500 p-[1px] rounded-full cursor-pointer group"
+      >
         <a
           href="#projects"
           onClick={handleScroll}
@@ -74,7 +95,7 @@ function Hero() {
         >
           View Projects
         </a>
-      </div>
+      </motion.div>
       <ScrollArrow />
     </div>
   );
