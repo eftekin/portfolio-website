@@ -43,6 +43,80 @@ function Resume() {
   const data = useMemo(
     () => [
       {
+        title: "2025 Summer",
+        subtitle: "Work and Travel, USA",
+        content: (
+          <div>
+            <p className="text-neutral-200 text-xs md:text-sm font-normal mb-8">
+              Spent the summer in the Outer Banks, North Carolina, working at the pizza
+              station in a fast-paced restaurant environment. Collaborated closely with a
+              diverse team of international colleagues, strengthening my teamwork and
+              communication skills. Took a short break from coding to gain new experiences
+              and broaden my perspective. During this time, I also traveled across major
+              U.S. cities, including Los Angeles, San Francisco, the Silicon Valley area,
+              and New York City, exploring tech hubs and iconic landmarks. Returned to my
+              final year energized and ready to continue my studies and projects.
+            </p>
+            <div className="grid grid-cols-3 gap-4">
+              <ImageWithModal
+                src="/wat-1.jpeg"
+                alt="Photo with a friend from pizza station"
+                width={500}
+                height={500}
+                priority={true}
+                className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+                onImageClick={handleImageClick}
+              />
+              <ImageWithModal
+                src="/wat-2.jpeg"
+                alt="US Flag"
+                width={500}
+                height={500}
+                loading="lazy"
+                className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+                onImageClick={handleImageClick}
+              />
+              <ImageWithModal
+                src="/wat-3.jpeg"
+                alt="Having fun with friends"
+                width={500}
+                height={500}
+                loading="lazy"
+                className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+                onImageClick={handleImageClick}
+              />
+              <ImageWithModal
+                src="/wat-4.jpeg"
+                alt="Little trip with friends"
+                width={500}
+                height={500}
+                loading="lazy"
+                className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+                onImageClick={handleImageClick}
+              />
+              <ImageWithModal
+                src="/wat-5.jpeg"
+                alt="Apple Park, Cupertino"
+                width={500}
+                height={500}
+                loading="lazy"
+                className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+                onImageClick={handleImageClick}
+              />
+              <ImageWithModal
+                src="/wat-6.jpeg"
+                alt="Googleplex, Mountain View"
+                width={500}
+                height={500}
+                loading="lazy"
+                className="rounded-lg object-cover h-20 md:h-44 lg:h-60 w-full shadow-[0_0_24px_rgba(34,_42,_53,_0.06),_0_1px_1px_rgba(0,_0,_0,_0.05),_0_0_0_1px_rgba(34,_42,_53,_0.04),_0_0_4px_rgba(34,_42,_53,_0.08),_0_16px_68px_rgba(47,_48,_55,_0.05),_0_1px_0_rgba(255,_255,_255,_0.1)_inset]"
+                onImageClick={handleImageClick}
+              />
+            </div>
+          </div>
+        ),
+      },
+      {
         title: "2024",
         subtitle: "Google Developer Groups on Campus Haliç",
         content: (
