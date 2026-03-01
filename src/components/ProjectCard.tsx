@@ -1,10 +1,11 @@
 import Image from "next/image";
 import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
+import { ReactNode } from "react";
 import { BackgroundGradientAnimation } from "./ui/background-gradient-animation";
 
 interface ProjectCardProps {
   title: string;
-  description: string;
+  description: string | ReactNode;
   isFeatured?: boolean;
   imageUrl?: string; // Make optional
   githubUrl?: string;
@@ -61,19 +62,25 @@ function ProjectCard({
               src={imageUrl}
               alt={title}
               fill
-              loading="eager"
-              quality={60}
-              unoptimized
+              priority={isFeatured}
+              loading={isFeatured ? "eager" : "lazy"}
+              quality={75}
               sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-              className="object-cover rounded-t-lg transition-transform duration-300"
+              className="object-cover object-top rounded-t-lg transition-transform duration-300"
             />
           ) : (
             <BackgroundGradientAnimation
               containerClassName="rounded-t-lg"
               gradientBackgroundStart="rgb(17, 17, 17)"
-              firstColor={isFeatured ? "130, 80, 255" : gradientColors.firstColor}
-              secondColor={isFeatured ? "255, 100, 200" : gradientColors.secondColor}
-              thirdColor={isFeatured ? "100, 150, 255" : gradientColors.thirdColor}
+              firstColor={
+                isFeatured ? "130, 80, 255" : gradientColors.firstColor
+              }
+              secondColor={
+                isFeatured ? "255, 100, 200" : gradientColors.secondColor
+              }
+              thirdColor={
+                isFeatured ? "100, 150, 255" : gradientColors.thirdColor
+              }
               size="100%"
               key={`gradient-${title}-${Math.random()}`}
               className={`opacity-90 ${isFeatured ? "animate-gradient-shift" : ""}`}

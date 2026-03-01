@@ -1,14 +1,51 @@
 "use client";
 
 import ProjectCard from "./ProjectCard";
+import { FaGithub } from "react-icons/fa";
 
 const projects = [
+  {
+    title: "Haliç Exam Genius Pro",
+    description: (
+      <span>
+        Rebuilt from a{" "}
+        <a
+          href="https://github.com/eftekin/halic-exam-genius"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-0.5 opacity-60 hover:opacity-100 transition-opacity"
+        >
+          legacy prototype
+          <FaGithub size={12} />
+        </a>{" "}
+        to scale with its 4,000+ users, Haliç Exam Genius Pro is a
+        high-performance production platform featuring automated data sync and
+        high-availability deployment.
+      </span>
+    ),
+    imageUrl: "/examgeniuspro.gif",
+    isFeatured: true,
+    githubUrl: "https://github.com/eftekin/halic-exam-genius-pro",
+    liveUrl: "https://halicexamgenius.app",
+    technologies: [
+      "FastAPI",
+      "PostgreSQL",
+      "Next.js",
+      "Docker",
+      "Nginx",
+      "DigitalOcean",
+    ],
+    gradientColors: {
+      firstColor: "255, 65, 108",
+      secondColor: "255, 75, 43",
+      thirdColor: "255, 169, 61",
+    },
+  },
   {
     title: "Floratrix",
     description:
       "An AI-powered plant care system that collects sensor data, predicts watering needs, and analyzes plant health through images.",
     imageUrl: "/floratrix.gif",
-    isFeatured: true,
     liveUrl: "https://floratrix.vercel.app",
     technologies: [
       "ESP32",
@@ -25,27 +62,18 @@ const projects = [
     },
   },
   {
-    title: "Exam Genius",
-    description:
-      "A Python app serving 3000+ Halic University students to access exam dates and classroom info.",
-    imageUrl: "/examgenius.gif",
-    githubUrl: "https://github.com/eftekin/halic-exam-genius",
-    liveUrl: "https://halicexamgenius.streamlit.app",
-    technologies: ["Python", "Streamlit", "Pandas", "Matplotlib"],
-    gradientColors: {
-      firstColor: "255, 65, 108",
-      secondColor: "255, 75, 43",
-      thirdColor: "255, 169, 61",
-    },
-  },
-  {
     title: "Ricklepedia",
     description:
       "A web app to explore Rick and Morty characters, episodes, and locations.",
     imageUrl: "/ricklepedia.gif",
     githubUrl: "https://github.com/eftekin/ricklepedia",
     liveUrl: "https://ricklepedia.com",
-    technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Rick and Morty API"],
+    technologies: [
+      "Next.js",
+      "TypeScript",
+      "Tailwind CSS",
+      "Rick and Morty API",
+    ],
     gradientColors: {
       firstColor: "255, 65, 108",
       secondColor: "255, 75, 43",
@@ -102,8 +130,8 @@ function Projects() {
           My Projects
         </h2>
         <p className="text-lg md:text-xl text-neutral-400 max-w-2xl mx-auto px-4">
-          Here are some of the projects I&rsquo;ve worked on. Each project demonstrates
-          different skills and technologies I&#39;ve mastered.
+          Here are some of the projects I&rsquo;ve worked on. Each project
+          demonstrates different skills and technologies I&#39;ve mastered.
         </p>
       </div>
 
