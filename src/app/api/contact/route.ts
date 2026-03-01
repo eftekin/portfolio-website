@@ -1,45 +1,113 @@
 import { NextResponse } from "next/server";
-import { createClient } from "@supabase/supabase-js";
 import { z } from "zod";
 
-// Enable more detailed error logging
-const debug = true;
+const contactSchema = z.object({
+  name: z.string().trim().min(2).max(50),
+  email: z.string().email(),
+  message: z.string().trim().min(10).max(1000),
+});
 
-// Environment variable checks
-const requiredEnvVars = [
-  "NEXT_PUBLIC_SUPABASE_URL",
-  "SUPABASE_SERVICE_ROLE_KEY",
-  "DISCORD_WEBHOOK_URL",
-] as const;
+const rateLimiter = new Map<string, { count: number; timestamp: number }>();
+const RATE_LIMIT = 5;
+const TIME_WINDOW = 60 * 60 * 1000;
 
-for (const envVar of requiredEnvVars) {
-  if (!process.env[envVar]) {
-    throw new Error(`Missing required environment variable: ${envVar}`);
+function getClientIp(request: Request): string {
+  const forwardedFor = request.headers.get("x-forwarded-for");
+  return forwardedFor?.split(",")[0]?.trim() || "unknown";
+}
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const userLimit = rateLimiter.get(ip);
+
+  if (!userLimit) {
+    rateLimiter.set(ip, { count: 1, timestamp: now });
+    return false;
+  }
+
+  if (now - userLimit.timestamp >= TIME_WINDOW) {
+    rateLimiter.set(ip, { count: 1, timestamp: now });
+    return false;
+  }
+
+  if (userLimit.count >= RATE_LIMIT) {
+    return true;
+  }
+
+  userLimit.count += 1;
+  return false;
+}
+
+function sanitizeMessage(message: string): string {
+  return message.trim().replace(/<[^>]*>/g, "");
+}
+
+function buildDiscordPayload({
+  name,
+  email,
+  message,
+}: {
+  name: string;
+  email: string;
+  message: string;
+}) {
+  return {
+    embeds: [
+      {
+        title: "New Contact Form Submission",
+        color: 0x5865f2,
+        fields: [
+          {
+            name: "Name",
+            value: name,
+            inline: true,
+          },
+          {
+            name: "Email",
+            value: email,
+            inline: true,
+          },
+          {
+            name: "Message",
+            value: message,
+          },
+        ],
+        timestamp: new Date().toISOString(),
+      },
+    ],
+  };
+}
+
+async function sendToDiscord(webhookUrl: string, payload: unknown) {
+  const response = await fetch(webhookUrl, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(payload),
+  });
+
+  if (!response.ok) {
+    const body = await response.text();
+    throw new Error(`Discord webhook failed (${response.status}): ${body}`);
   }
 }
 
-// Input validation schema
-const contactSchema = z.object({
-  name: z.string().min(2).max(50),
-  email: z.string().email(),
-  message: z.string().min(10).max(1000),
-});
-
-// Rate limiting map
-const rateLimiter = new Map<string, { count: number; timestamp: number }>();
-const RATE_LIMIT = 5; // max requests
-const TIME_WINDOW = 3600000; // 1 hour in milliseconds
-
 export async function POST(request: Request) {
   try {
-    // Check request size
+    const webhookUrl = process.env.DISCORD_WEBHOOK_URL;
+    if (!webhookUrl) {
+      return NextResponse.json(
+        { error: "Server configuration error" },
+        { status: 500 }
+      );
+    }
+
     const contentLength = parseInt(request.headers.get("content-length") || "0");
     if (contentLength > 10000) {
-      // 10KB limit
       return NextResponse.json({ error: "Request too large" }, { status: 413 });
     }
 
-    // Check content type
     const contentType = request.headers.get("content-type");
     if (!contentType?.includes("application/json")) {
       return NextResponse.json(
@@ -48,40 +116,15 @@ export async function POST(request: Request) {
       );
     }
 
-    // Get IP address for rate limiting
-    const ip = request.headers.get("x-forwarded-for") || "unknown";
-
-    // Check rate limit
-    const now = Date.now();
-    const userLimit = rateLimiter.get(ip);
-
-    if (userLimit) {
-      if (now - userLimit.timestamp < TIME_WINDOW) {
-        if (userLimit.count >= RATE_LIMIT) {
-          return NextResponse.json({ error: "Too many requests" }, { status: 429 });
-        }
-        userLimit.count++;
-      } else {
-        rateLimiter.set(ip, { count: 1, timestamp: now });
-      }
-    } else {
-      rateLimiter.set(ip, { count: 1, timestamp: now });
+    const ip = getClientIp(request);
+    if (isRateLimited(ip)) {
+      return NextResponse.json({ error: "Too many requests" }, { status: 429 });
     }
 
     const body = await request.json();
 
-    // Log incoming request in debug mode
-    if (debug) {
-      console.log("Incoming request:", {
-        headers: Object.fromEntries(request.headers),
-        body,
-      });
-    }
-
-    // Validate input
     const result = contactSchema.safeParse(body);
     if (!result.success) {
-      console.error("Validation error:", result.error);
       return NextResponse.json(
         {
           error: "Invalid input",
@@ -92,87 +135,20 @@ export async function POST(request: Request) {
     }
 
     const { name, email, message } = result.data;
+    const sanitizedMessage = sanitizeMessage(message);
 
-    // Initialize Supabase client
-    const supabase = createClient(
-      process.env.NEXT_PUBLIC_SUPABASE_URL!,
-      process.env.SUPABASE_SERVICE_ROLE_KEY!,
-      {
-        auth: {
-          autoRefreshToken: false,
-          persistSession: false,
-        },
-      }
+    await sendToDiscord(
+      webhookUrl,
+      buildDiscordPayload({
+        name,
+        email,
+        message: sanitizedMessage,
+      })
     );
-
-    // Sanitize input (basic example)
-    const sanitizedMessage = message.trim().replace(/<[^>]*>/g, "");
-
-    // Insert data with error logging
-    const { data, error } = await supabase
-      .from("contact_messages")
-      .insert([
-        {
-          name: name.trim(),
-          email: email.trim(),
-          message: sanitizedMessage,
-          created_at: new Date().toISOString(),
-        },
-      ])
-      .select();
-
-    if (error) {
-      console.error("Supabase error:", error);
-      throw error;
-    }
-
-    // Send message to Discord webhook
-    try {
-      const discordMessage = {
-        embeds: [
-          {
-            title: "New Contact Form Submission",
-            color: 0x00ff00,
-            fields: [
-              {
-                name: "Name",
-                value: name.trim(),
-                inline: true,
-              },
-              {
-                name: "Email",
-                value: email.trim(),
-                inline: true,
-              },
-              {
-                name: "Message",
-                value: sanitizedMessage,
-              },
-            ],
-            timestamp: new Date().toISOString(),
-          },
-        ],
-      };
-
-      const discordResponse = await fetch(process.env.DISCORD_WEBHOOK_URL!, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(discordMessage),
-      });
-
-      if (!discordResponse.ok) {
-        console.error("Discord webhook error:", await discordResponse.text());
-      }
-    } catch (discordError) {
-      console.error("Error sending to Discord:", discordError);
-    }
 
     return NextResponse.json(
       {
-        message: "Success",
-        data,
+        message: "Message sent successfully",
       },
       {
         status: 200,
@@ -184,18 +160,16 @@ export async function POST(request: Request) {
       }
     );
   } catch (error) {
-    console.error("Detailed error:", error);
+    console.error("Contact form error:", error);
     return NextResponse.json(
       {
         error: "Internal server error",
-        details: debug ? String(error) : undefined,
       },
       { status: 500 }
     );
   }
 }
 
-// Add OPTIONS handler for CORS
 export async function OPTIONS() {
   return NextResponse.json(
     {},

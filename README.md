@@ -1,12 +1,12 @@
 # 🌐 Portfolio Website
 
-Welcome to my personal website! Here, I share my journey in AI, software development, and projects I’m passionate about. Built with **Next.js**, styled with **Tailwind CSS**, and using **Supabase** for the contact section.
+Welcome to my personal website! Here, I share my journey in AI, software development, and projects I’m passionate about. Built with **Next.js**, styled with **Tailwind CSS**, and using a **Discord webhook** integration for the contact section.
 
 ## 🛠 Tech Stack
 
 - **Framework:** Next.js
 - **Styling:** Tailwind CSS
-- **Backend:** Supabase
+- **Backend:** Next.js Route Handlers + Discord Webhook
 
 ## 🚀 Getting Started
 
@@ -26,12 +26,10 @@ pnpm install
 pnpm dev
 ```
 
-Set up your `.env.local` file with your Supabase credentials:
+Set up your `.env.local` file with your Discord webhook URL:
 
 ```env
-NEXT_PUBLIC_SUPABASE_URL=your-supabase-url
-NEXT_PUBLIC_SUPABASE_ANON_KEY=your-anon-key
-SUPABASE_SERVICE_ROLE_KEY=your-service-role-key
+DISCORD_WEBHOOK_URL=your-discord-webhook-url
 ```
 
 ## 🚀 Deployment
