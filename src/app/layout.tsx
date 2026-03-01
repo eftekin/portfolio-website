@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
@@ -8,8 +8,26 @@ import { Toaster } from "react-hot-toast";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Mustafa Eftekin - Portfolio",
-  description: "Software Engineer & AI Enthusiast",
+  metadataBase: new URL("https://eftekin.com"),
+  title: "Mustafa Eftekin - AI & Full-Stack Developer",
+  description:
+    "AI & Full-Stack Developer with a passion for machine learning, data science, and building innovative projects.",
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://eftekin.com",
+    siteName: "Mustafa Eftekin Portfolio",
+    title: "Mustafa Eftekin - AI & Full-Stack Developer",
+    description:
+      "AI & Full-Stack Developer with a passion for machine learning, data science, and building innovative projects.",
+  },
+  icons: {
+    icon: "/favicon.ico",
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#000000",
 };
 
 export default function RootLayout({
