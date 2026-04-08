@@ -42,6 +42,19 @@ const projects = [
     },
   },
   {
+    title: "IoT Pitwall",
+    description:
+      "Pulls live timing from MultiViewer's GraphQL API and drives Meross smart bulbs in real-time — safety car turns the room yellow, green flag goes green.",
+    imageUrl: "/iot-pitwall.gif",
+    githubUrl: "https://github.com/eftekin/iot-pitwall",
+    technologies: ["Python", "AsyncIO", "Meross SDK", "GraphQL", "F1TV"],
+    gradientColors: {
+      firstColor: "232, 0, 45",
+      secondColor: "180, 0, 30",
+      thirdColor: "255, 80, 0",
+    },
+  },
+  {
     title: "Floratrix",
     description:
       "An AI-powered plant care system that collects sensor data, predicts watering needs, and analyzes plant health through images.",
