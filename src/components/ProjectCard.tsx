@@ -82,7 +82,6 @@ function ProjectCard({
                 isFeatured ? "100, 150, 255" : gradientColors.thirdColor
               }
               size="100%"
-              key={`gradient-${title}-${Math.random()}`}
               className={`opacity-90 ${isFeatured ? "animate-gradient-shift" : ""}`}
             />
           )}
