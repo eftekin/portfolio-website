@@ -56,11 +56,12 @@ export const TIMELINE: TimelineEntry[] = [
       "New York",
     ],
     photos: [
-      { src: "/wat-1.webp", alt: "Outer Banks", width: 4284, height: 5712 },
+      { src: "/wat-1.webp", alt: "Team pizza", width: 4284, height: 5712 },
+      { src: "/wat-2.webp", alt: "U.S flag", width: 3024, height: 4032 },
+      { src: "/wat-3.webp", alt: "With friends", width: 3024, height: 4032 },
       { src: "/wat-5.webp", alt: "Apple Park", width: 3024, height: 4032 },
       { src: "/wat-6.webp", alt: "Googleplex", width: 4284, height: 5712 },
-      { src: "/wat-3.webp", alt: "With friends", width: 3024, height: 4032 },
-      { src: "/wat-4.webp", alt: "Road trip", width: 4284, height: 5712 },
+      { src: "/wat-4.webp", alt: "With friends", width: 4284, height: 5712 },
     ],
   },
   {
@@ -68,10 +69,9 @@ export const TIMELINE: TimelineEntry[] = [
     year: "2024",
     headline: "Core team member and project team lead at GDG on Campus Haliç.",
     detail: [
-      // TODO: paste the Python101 YouTube URL here.
       {
         label: "Python101",
-        href: "https://www.youtube.com/watch?v=REPLACE_ME",
+        href: "https://www.youtube.com/watch?v=jDuRw_1Cdc8",
       },
       "GitHub101",
       "DevFest",
