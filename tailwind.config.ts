@@ -8,8 +8,6 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Alpha is baked into hairline/underline: Tailwind v3 cannot apply an
-        // opacity modifier to a raw oklch() value.
         paper: {
           DEFAULT: "oklch(0.964 0.006 95)",
           ink: "oklch(0.2 0.012 80)",
@@ -25,8 +23,6 @@ export default {
         },
       },
       screens: {
-        // `raw` so it compiles to exactly (max-width: 820px); the built-in
-        // max-[820px]: shorthand excludes 820px itself.
         narrow: { raw: "(max-width: 820px)" },
         phone: { raw: "(max-width: 520px)" },
       },

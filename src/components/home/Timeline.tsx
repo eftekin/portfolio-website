@@ -3,7 +3,6 @@ import { TIMELINE } from "@/lib/home-content";
 import { PhotoStrip } from "./PhotoStrip";
 import { LINK_CLASS, SECTION_LABEL_CLASS } from "./styles";
 
-/** `showPhotos={false}` renders the text-only variant. */
 export function Timeline({ showPhotos = true }: { showPhotos?: boolean }) {
   return (
     <section id="timeline">
@@ -50,7 +49,6 @@ export function Timeline({ showPhotos = true }: { showPhotos?: boolean }) {
                 <p className="mt-[6px] font-mono text-[12.5px] text-paper-dim">
                   {entry.detail.map((part, i) => (
                     <Fragment key={typeof part === "string" ? part : part.href}>
-                      {/* Non-breaking space keeps the separator off a line start. */}
                       {i > 0 && "\u00a0· "}
                       {typeof part === "string" ? (
                         part

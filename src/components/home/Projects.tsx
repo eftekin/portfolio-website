@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { PROJECTS, type Project } from "@/lib/home-content";
 import { SECTION_LABEL_CLASS } from "./styles";
 
@@ -25,6 +25,7 @@ function place(clientX: number, clientY: number) {
 export function Projects() {
   const [preview, setPreview] = useState<Preview | null>(null);
   const [previewAllowed, setPreviewAllowed] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
     const canHover = window.matchMedia("(hover: hover) and (pointer: fine)");
@@ -44,6 +45,28 @@ export function Projects() {
     };
   }, []);
 
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section || !previewAllowed) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        observer.disconnect();
+        for (const { preview: clip } of PROJECTS) {
+          if (!clip) continue;
+          fetch(clip.src)
+            .then((response) => response.blob())
+            .catch(() => {});
+        }
+      },
+      { rootMargin: "300px" },
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, [previewAllowed]);
+
   const open = useCallback(
     (project: Project, event: React.MouseEvent) => {
       if (!previewAllowed) return;
@@ -62,7 +85,11 @@ export function Projects() {
   const close = useCallback(() => setPreview(null), []);
 
   return (
-    <section id="projects" className="pt-[76px] phone:pt-[56px]">
+    <section
+      ref={sectionRef}
+      id="projects"
+      className="pt-[76px] phone:pt-[56px]"
+    >
       <p className={SECTION_LABEL_CLASS}>Projects</p>
       <div>
         {PROJECTS.map((project) => (
@@ -104,7 +131,6 @@ export function Projects() {
         ))}
       </div>
 
-      {/* Mounted on hover only, so nothing is fetched on page load. */}
       {preview?.project.preview && (
         <div
           aria-hidden
@@ -120,6 +146,7 @@ export function Projects() {
             muted
             loop
             playsInline
+            preload="auto"
             className="block h-auto w-full"
           />
         </div>

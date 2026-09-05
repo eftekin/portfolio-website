@@ -1,12 +1,8 @@
-/** Home page content. One line per year; see the redesign handoff README. */
-
-/** A run of copy: plain text, or an external link. */
 export type TextPart = string | { label: string; href: string };
 
 export type Photo = {
   src: string;
   alt: string;
-  /** Intrinsic size, so the lightbox sizes to the image instead of letterboxing. */
   width: number;
   height: number;
 };
@@ -15,7 +11,6 @@ export type TimelineEntry = {
   id: string;
   year: string;
   season?: string;
-  /** Renders the year column in the accent color. */
   accent?: boolean;
   headline: string | TextPart[];
   detail?: TextPart[];
@@ -25,12 +20,10 @@ export type TimelineEntry = {
 export type Project = {
   name: string;
   descriptor?: string;
-  /** Renders the descriptor in the accent color instead of muted. */
   descriptorAccent?: boolean;
   stack: string;
   action: "live" | "code";
   href: string;
-  /** Rows without one show no hover preview. */
   preview?: { src: string; width: number; height: number };
 };
 
