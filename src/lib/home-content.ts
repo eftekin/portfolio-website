@@ -73,6 +73,13 @@ export const TIMELINE: TimelineEntry[] = [
       { src: "/gdg-3.webp", alt: "Python101", width: 5184, height: 3456 },
       { src: "/gdg-2.webp", alt: "DevFest 2024", width: 4032, height: 3024 },
       { src: "/gdg-6.webp", alt: "GitHub101", width: 3024, height: 4032 },
+      { src: "/gdg-5.webp", alt: "GitHub101", width: 3024, height: 4032 },
+      {
+        src: "/gdg-4.webp",
+        alt: "Speaking at a GDG event",
+        width: 3456,
+        height: 5184,
+      },
       { src: "/gdg-1.webp", alt: "First GDG event", width: 3024, height: 4032 },
     ],
   },
