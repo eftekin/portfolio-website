@@ -60,7 +60,13 @@ export const TIMELINE: TimelineEntry[] = [
   {
     id: "gdg",
     year: "2024",
-    headline: "Core team member and project team lead at GDG on Campus Haliç.",
+    headline: [
+      "Core team member and project team lead at ",
+      {
+        label: "GDG on Campus Haliç",
+        href: "https://github.com/gdg-on-campus-halic",
+      },
+    ],
     detail: [
       {
         label: "Python101",
@@ -87,11 +93,11 @@ export const TIMELINE: TimelineEntry[] = [
     id: "wincoi",
     year: "2023",
     headline: [
-      "React Native developer at ",
+      " Part-time mobile development at ",
       { label: "Wincoi", href: "https://wincoi.com/" },
-      ", six months.",
+      " using React Native.",
     ],
-    detail: ["teamwork", "git and GitHub", "production code"],
+    detail: ["iOS & Android", "version control"],
     photos: [
       { src: "/wincoi-1.webp", alt: "Wincoi", width: 4032, height: 3024 },
       { src: "/wincoi-2.webp", alt: "Wincoi", width: 1536, height: 2048 },
