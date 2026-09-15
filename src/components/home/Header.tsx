@@ -8,7 +8,7 @@ export function Header() {
         Mustafa Eftekin
       </h1>
       <p className="mt-[10px] font-mono text-[14px] tracking-[-0.01em] text-paper-muted">
-        backend &amp; platform engineer, Istanbul
+        software engineer, Istanbul
       </p>
       <p className="mt-[26px] flex flex-wrap gap-5 font-mono text-[13px]">
         {LINKS.map(({ label, href }) => {
