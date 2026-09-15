@@ -1,6 +1,6 @@
 # eftekin.com
 
-Personal site of Mustafa Eftekin — backend and platform engineer in Istanbul.
+Personal site of Mustafa Eftekin — software engineer in Istanbul.
 
 A single static page: a name block, a year-by-year timeline, and a project
 index. Project rows with a preview show it in a cursor-following panel that
