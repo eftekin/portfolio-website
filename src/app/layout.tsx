@@ -1,25 +1,33 @@
-import type { Metadata, Viewport } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
 import { Analytics } from "@vercel/analytics/next";
-import { ThemeProvider } from "@/components/theme-provider";
-import { Toaster } from "react-hot-toast";
+import type { Metadata, Viewport } from "next";
+import { JetBrains_Mono, Space_Grotesk } from "next/font/google";
+import "./globals.css";
 
-const inter = Inter({ subsets: ["latin"] });
+const spaceGrotesk = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-space-grotesk",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains-mono",
+});
+
+const title = "Mustafa Eftekin — backend & platform engineer";
+const description =
+  "Backend and platform engineer in Istanbul. Year by year, and a project index.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://eftekin.com"),
-  title: "Mustafa Eftekin - AI & Full-Stack Developer",
-  description:
-    "AI & Full-Stack Developer with a passion for machine learning, data science, and building innovative projects.",
+  title,
+  description,
   openGraph: {
     type: "website",
     locale: "en_US",
     url: "https://eftekin.com",
-    siteName: "Mustafa Eftekin Portfolio",
-    title: "Mustafa Eftekin - AI & Full-Stack Developer",
-    description:
-      "AI & Full-Stack Developer with a passion for machine learning, data science, and building innovative projects.",
+    siteName: "Mustafa Eftekin",
+    title,
+    description,
   },
   icons: {
     icon: "/favicon.ico",
@@ -27,7 +35,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#000000",
+  themeColor: "#F6F4EF",
 };
 
 export default function RootLayout({
@@ -36,17 +44,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
-      <body className={`${inter.className} dark:bg-black antialiased`}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          {children}
-        </ThemeProvider>
-        <Toaster position="bottom-right" />
+    <html
+      lang="en"
+      className={`${spaceGrotesk.variable} ${jetbrainsMono.variable}`}
+    >
+      <body className="bg-paper font-display text-paper-ink antialiased selection:bg-paper-accent selection:text-paper">
+        {children}
         <Analytics />
       </body>
     </html>

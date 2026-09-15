@@ -2,17 +2,21 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
-  images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "eftekin.com",
-      },
-    ],
-    minimumCacheTTL: 60,
-  },
   compiler: {
     removeConsole: process.env.NODE_ENV === "production",
+  },
+  async headers() {
+    return [
+      {
+        source: "/:file(.+\\.mp4)",
+        headers: [
+          {
+            key: "Cache-Control",
+            value: "public, max-age=3600, stale-while-revalidate=604800",
+          },
+        ],
+      },
+    ];
   },
 };
 
