@@ -5,7 +5,7 @@ export function Header() {
   return (
     <header className="pb-[92px] pt-[124px] phone:pb-[56px] phone:pt-[72px]">
       <h1 className="text-[clamp(30px,3.6vw,44px)] font-medium leading-[1.1] tracking-[-0.035em]">
-        Mustafa Eftekin
+        mustafa eftekin
       </h1>
       <p className="mt-[10px] font-mono text-[14px] tracking-[-0.01em] text-paper-muted">
         software engineer, Istanbul

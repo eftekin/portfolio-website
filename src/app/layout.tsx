@@ -13,7 +13,7 @@ const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
 });
 
-const title = "Mustafa Eftekin — software engineer";
+const title = "mustafa eftekin — software engineer";
 const description =
   "Software engineer in Istanbul, backend and platform focused. A year-by-year record of where I've been, and the projects that came out of it.";
 
