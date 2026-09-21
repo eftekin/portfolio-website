@@ -36,18 +36,70 @@ export const LINKS = [
 
 export const TIMELINE: TimelineEntry[] = [
   {
+    id: "peak",
+    year: "2026",
+    season: "summer",
+    headline: [
+      "Big Data Platform Engineering intern at ",
+      { label: "Peak", href: "https://peak.com" },
+      ".",
+    ],
+    detail: [
+      "worked on the data platform that powers games played by millions every day",
+    ],
+    photos: [
+      { src: "/peak-1.webp", alt: "Intern team", width: 2048, height: 1536 },
+      { src: "/peak-3.webp", alt: "Peak office", width: 3024, height: 4032 },
+      { src: "/peak-2.webp", alt: "With the team", width: 4032, height: 3024 },
+    ],
+  },
+  {
+    id: "graduation",
+    year: "2026",
+    headline: "Graduated from Haliç University in Software Engineering.",
+    detail: [
+      "graduation project: spotting defects in factory images with Vision Transformers",
+    ],
+    photos: [
+      {
+        src: "/graduation-3.webp",
+        alt: "Cap and gown",
+        width: 3024,
+        height: 4032,
+      },
+      {
+        src: "/graduation-2.webp",
+        alt: "On stage",
+        width: 3024,
+        height: 4032,
+      },
+      {
+        src: "/graduation-1.webp",
+        alt: "With friends",
+        width: 4284,
+        height: 5712,
+      },
+      {
+        src: "/graduation-5.webp",
+        alt: "With friends",
+        width: 4032,
+        height: 3024,
+      },
+      {
+        src: "/graduation-4.webp",
+        alt: "With great degree comes great responsibility",
+        width: 4284,
+        height: 5712,
+      },
+    ],
+  },
+  {
     id: "work-and-travel",
     year: "2025",
     season: "summer",
     headline:
       "Three months in North Carolina on Work and Travel, then across the US.",
-    detail: [
-      "Outer Banks",
-      "Los Angeles",
-      "San Francisco",
-      "Cupertino",
-      "New York",
-    ],
+    detail: ["Outer Banks", "Silicon Valley", "New York"],
     photos: [
       { src: "/wat-1.webp", alt: "Team pizza", width: 4284, height: 5712 },
       { src: "/wat-2.webp", alt: "U.S flag", width: 3024, height: 4032 },
@@ -59,7 +111,7 @@ export const TIMELINE: TimelineEntry[] = [
   },
   {
     id: "gdg",
-    year: "2024",
+    year: "2024–25",
     headline: [
       "Core team member and project team lead at ",
       {
@@ -67,14 +119,7 @@ export const TIMELINE: TimelineEntry[] = [
         href: "https://github.com/gdg-on-campus-halic",
       },
     ],
-    detail: [
-      {
-        label: "Python101",
-        href: "https://www.youtube.com/watch?v=jDuRw_1Cdc8",
-      },
-      "GitHub101",
-      "DevFest",
-    ],
+    detail: ["led student teams and gave talks on Python and GitHub"],
     photos: [
       { src: "/gdg-3.webp", alt: "Python101", width: 5184, height: 3456 },
       { src: "/gdg-2.webp", alt: "DevFest 2024", width: 4032, height: 3024 },
@@ -93,11 +138,14 @@ export const TIMELINE: TimelineEntry[] = [
     id: "wincoi",
     year: "2023",
     headline: [
-      " Part-time mobile development at ",
+      "Part-time mobile development at ",
       { label: "Wincoi", href: "https://wincoi.com/" },
       " using React Native.",
     ],
-    detail: ["iOS & Android", "version control"],
+    detail: [
+      "shipped features on a commercial iOS & Android app",
+      "PR & code review workflow",
+    ],
     photos: [
       { src: "/wincoi-1.webp", alt: "Wincoi", width: 4032, height: 3024 },
       { src: "/wincoi-2.webp", alt: "Wincoi", width: 1536, height: 2048 },
