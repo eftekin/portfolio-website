@@ -99,7 +99,7 @@ export const TIMELINE: TimelineEntry[] = [
     season: "summer",
     headline:
       "Three months in North Carolina on Work and Travel, then across the US.",
-    detail: ["Outer Banks", "Silicon Valley", "New York"],
+    detail: ["Outer Banks\u00a0· Silicon Valley\u00a0· New York"],
     photos: [
       { src: "/wat-1.webp", alt: "Team pizza", width: 4284, height: 5712 },
       { src: "/wat-2.webp", alt: "U.S flag", width: 3024, height: 4032 },
@@ -119,7 +119,11 @@ export const TIMELINE: TimelineEntry[] = [
         href: "https://github.com/gdg-on-campus-halic",
       },
     ],
-    detail: ["led student teams and gave talks on Python and GitHub"],
+    detail: [
+      "led student teams and gave talks on ",
+      { label: "Python", href: "https://www.youtube.com/watch?v=jDuRw_1Cdc8" },
+      " and GitHub",
+    ],
     photos: [
       { src: "/gdg-3.webp", alt: "Python101", width: 5184, height: 3456 },
       { src: "/gdg-2.webp", alt: "DevFest 2024", width: 4032, height: 3024 },
@@ -143,8 +147,7 @@ export const TIMELINE: TimelineEntry[] = [
       " using React Native.",
     ],
     detail: [
-      "shipped features on a commercial iOS & Android app",
-      "PR & code review workflow",
+      "shipped features on a commercial iOS & Android app\u00a0· PR & code review workflow",
     ],
     photos: [
       { src: "/wincoi-1.webp", alt: "Wincoi", width: 4032, height: 3024 },
