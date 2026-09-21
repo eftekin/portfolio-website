@@ -15,7 +15,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 const title = "mustafa eftekin — software engineer";
 const description =
-  "Software engineer in Istanbul, backend and platform focused. A year-by-year record of where I've been, and the projects that came out of it.";
+  "software engineer in Istanbul. this is what i've been doing since 2021.";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://eftekin.com"),
