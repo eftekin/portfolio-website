@@ -47,24 +47,22 @@ export function Timeline({ showPhotos = true }: { showPhotos?: boolean }) {
               </p>
               {entry.detail && (
                 <p className="mt-[6px] font-mono text-[12.5px] text-paper-dim">
-                  {entry.detail.map((part, i) => (
-                    <Fragment key={typeof part === "string" ? part : part.href}>
-                      {i > 0 && "\u00a0· "}
-                      {typeof part === "string" ? (
-                        part
-                      ) : (
-                        <a
-                          href={part.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="hover:text-paper-accent"
-                        >
-                          {part.label}
-                          {"\u200a↗"}
-                        </a>
-                      )}
-                    </Fragment>
-                  ))}
+                  {entry.detail.map((part) =>
+                    typeof part === "string" ? (
+                      <Fragment key={part}>{part}</Fragment>
+                    ) : (
+                      <a
+                        key={part.href}
+                        href={part.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-paper-accent"
+                      >
+                        {part.label}
+                        {"\u200a↗"}
+                      </a>
+                    ),
+                  )}
                 </p>
               )}
               {showPhotos && entry.photos && (
